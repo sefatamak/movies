@@ -14,26 +14,33 @@ import { setSearchTerm, setYear, setType } from '../store/slices/movieSlice';
 import { MovieType } from '../types/movie';
 import { searchFiltersContainer, formControlStyles } from '../styles/commonStyles';
 
+// SearchFilters component for filtering movies
 const SearchFilters: React.FC = () => {
   const dispatch = useDispatch();
   const { searchTerm, year, type } = useSelector((state: RootState) => state.movies);
+
+  // Generate years array from 1900 to current year
   const [years] = React.useState(() => {
     const currentYear = new Date().getFullYear();
     return Array.from({ length: currentYear - 1900 + 1 }, (_, i) => (currentYear - i).toString());
   });
 
+  // Handle search term change
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     dispatch(setSearchTerm(event.target.value));
   };
 
+  // Handle year filter change
   const handleYearChange = (event: SelectChangeEvent) => {
     dispatch(setYear(event.target.value));
   };
 
+  // Handle type filter change
   const handleTypeChange = (event: SelectChangeEvent) => {
     dispatch(setType(event.target.value as MovieType));
   };
 
+  // Available movie types
   const typeOptions = [
     { value: 'all', label: 'All' },
     { value: 'movie', label: 'Movie' },

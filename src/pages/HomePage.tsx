@@ -9,17 +9,19 @@ import MovieTable from '../components/MovieTable';
 import MoviePagination from '../components/MoviePagination';
 import { containerStyles } from '../styles/commonStyles';
 
+// HomePage component - Main page of the application
 const HomePage: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
   const { movies, error, currentPage, totalResults, searchTerm, year, type } = useSelector(
     (state: RootState) => state.movies
   );
 
-  // İlk yüklemede ve filtre değişikliklerinde filmleri getir
+  // Fetch movies on initial load and when filters change
   useEffect(() => {
     dispatch(fetchMovies({ searchTerm, year, type, page: currentPage }));
   }, [dispatch, searchTerm, year, type, currentPage]);
 
+  // Handle page change in pagination
   const handlePageChange = (page: number) => {
     dispatch(setCurrentPage(page));
   };

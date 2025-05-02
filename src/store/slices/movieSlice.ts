@@ -30,12 +30,10 @@ export const fetchMovies = createAsyncThunk<
         page,
       };
 
-      // Eğer year varsa ve all değilse ekle
       if (year && year !== 'all') {
         params.y = year;
       }
 
-      // Eğer type varsa ve 'all' değilse ekle
       if (type && type !== 'all') {
         params.type = type;
       }
@@ -44,7 +42,6 @@ export const fetchMovies = createAsyncThunk<
 
       if (response.Response === 'False') {
         if (response.Error === 'Too many results.') {
-          // Eğer çok fazla sonuç varsa, sadece ilk sayfayı getir
           const firstPageResponse = await apiService.searchMovies({
             ...params,
             page: 1,

@@ -13,6 +13,7 @@ import {
 import { Movie } from '../types/movie';
 import { movieTableRow, moviePoster } from '../styles/commonStyles';
 
+// Props interface for MovieTable component
 interface MovieTableProps {
   movies: Movie[];
 }
@@ -20,6 +21,7 @@ interface MovieTableProps {
 const MovieTable: React.FC<MovieTableProps> = ({ movies }) => {
   const navigate = useNavigate();
 
+  // Handle movie click to navigate to movie details page
   const handleMovieClick = (imdbID: string) => {
     navigate(`/movie/${imdbID}`);
   };
@@ -46,7 +48,7 @@ const MovieTable: React.FC<MovieTableProps> = ({ movies }) => {
               <TableCell>
                 <Box
                   component="img"
-                  src={movie.Poster !== 'N/A' ? movie.Poster : 'https://via.placeholder.com/100x150?text=No+Poster'}
+                  src={movie.Poster !== 'N/A' ? movie.Poster : 'https://placehold.co/100x150/000000/FFFFFF/png?text=No+Poster'}
                   alt={movie.Title}
                   sx={moviePoster}
                 />

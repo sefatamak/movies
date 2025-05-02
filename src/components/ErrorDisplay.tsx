@@ -1,15 +1,19 @@
 import React from 'react';
-import { Typography } from '@mui/material';
+import { Alert } from '@mui/material';
 
+// Props interface for ErrorDisplay component
 interface ErrorDisplayProps {
   error: string | null;
 }
 
+// ErrorDisplay component for showing error messages
 const ErrorDisplay: React.FC<ErrorDisplayProps> = ({ error }) => {
+  if (!error) return null;
+
   return (
-    <Typography color="error" sx={{ mt: 3 }}>
+    <Alert severity="error" sx={{ mb: 2 }}>
       {error}
-    </Typography>
+    </Alert>
   );
 };
 
