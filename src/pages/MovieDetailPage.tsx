@@ -8,6 +8,13 @@ import LoadingSpinner from '../components/LoadingSpinner';
 import ErrorPage from '../components/ErrorPage';
 import MoviePoster from '../components/MoviePoster';
 import MovieDetails from '../components/MovieDetails';
+import {
+  movieDetailContainer,
+  movieDetailPaper,
+  movieDetailContent,
+  movieDetailPoster,
+  movieDetailInfo,
+} from '../styles/commonStyles';
 
 const MovieDetailPage: React.FC = () => {
   const { imdbID } = useParams<{ imdbID: string }>();
@@ -32,13 +39,13 @@ const MovieDetailPage: React.FC = () => {
   }
 
   return (
-    <Container sx={{ p: 3 }}>
-      <Paper sx={{ p: 3 }}>
-        <Box sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' }, gap: 3 }}>
-          <Box sx={{ width: { xs: '100%', md: '33%' } }}>
+    <Container sx={movieDetailContainer}>
+      <Paper sx={movieDetailPaper}>
+        <Box sx={movieDetailContent}>
+          <Box sx={movieDetailPoster}>
             <MoviePoster movie={selectedMovie} />
           </Box>
-          <Box sx={{ width: { xs: '100%', md: '67%' } }}>
+          <Box sx={movieDetailInfo}>
             <MovieDetails movie={selectedMovie} />
           </Box>
         </Box>

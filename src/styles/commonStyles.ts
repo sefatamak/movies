@@ -65,4 +65,26 @@ export const loadingContainer: SxProps = {
 
 export const loadingSpinner: SxProps = {
   color: 'primary.main',
+};
+
+export const movieDetailContainer: SxProps = {
+  p: 3,
+};
+
+export const movieDetailPaper: SxProps = {
+  p: 3,
+};
+
+export const movieDetailContent: SxProps = {
+  display: 'flex',
+  flexDirection: { xs: 'column', md: 'row' },
+  gap: 3,
+};
+
+export const movieDetailPoster: SxProps = {
+  width: { xs: '100%', md: '33%' },
+};
+
+export const movieDetailInfo: SxProps = {
+  width: { xs: '100%', md: '67%' },
 }; 
