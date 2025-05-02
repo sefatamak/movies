@@ -1,6 +1,6 @@
 # Movie Search Application
 
-A React-based Single Page Application that allows users to search and view details of movies using the OMDb API.
+A React-based Application that allows users to search and view details of movies using the OMDB API.
 
 ## Features
 
