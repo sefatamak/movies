@@ -1,8 +1,6 @@
 import axios from 'axios';
-
-// API base URL and API key configuration
-const API_URL = 'http://www.omdbapi.com/';
-const API_KEY = '743d3c7'; // OMDb API key
+import { SearchResponse, MovieDetailsResponse, ApiService } from '../types/api';
+import { API_KEY, API_URL } from '../constants';
 
 // Create axios instance with base configuration
 const api = axios.create({
@@ -12,21 +10,8 @@ const api = axios.create({
   },
 });
 
-// Interface for search parameters
-interface SearchParams {
-  s?: string;
-  y?: string;
-  type?: 'movie' | 'series' | 'episode';
-  page?: number;
-}
-
-// Interface for movie details parameters
-interface MovieDetailsParams {
-  i: string;
-}
-
 // Search movies function
-export const searchMovies = async (params: SearchParams) => {
+export const searchMovies = async (params: { s: string; y?: string; type?: string; page: number }): Promise<SearchResponse> => {
   try {
     const response = await api.get('', { params });
     return response.data;
@@ -37,7 +22,7 @@ export const searchMovies = async (params: SearchParams) => {
 };
 
 // Get movie details function
-export const getMovieDetails = async (params: MovieDetailsParams) => {
+export const getMovieDetails = async (params: { i: string }): Promise<MovieDetailsResponse> => {
   try {
     const response = await api.get('', { params });
     return response.data;
@@ -47,4 +32,9 @@ export const getMovieDetails = async (params: MovieDetailsParams) => {
   }
 };
 
-export default api; 
+const apiService: ApiService = {
+  searchMovies,
+  getMovieDetails,
+};
+
+export default apiService; 

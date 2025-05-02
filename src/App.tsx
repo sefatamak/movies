@@ -11,12 +11,6 @@ import MovieDetailPage from './pages/MovieDetailPage';
 const theme = createTheme({
   palette: {
     mode: 'light',
-    primary: {
-      main: '#1976d2',
-    },
-    secondary: {
-      main: '#dc004e',
-    },
   },
 });
 

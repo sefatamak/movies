@@ -5,7 +5,7 @@ A React-based Single Page Application that allows users to search and view detai
 ## Features
 
 - Search movies by title
-- Filter movies by year and type (movie, series, episode)
+- Filter movies by year and type (movie, series, game)
 - Pagination support
 - Detailed movie information view
 - Responsive design
