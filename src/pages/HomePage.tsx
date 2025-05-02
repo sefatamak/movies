@@ -30,7 +30,7 @@ const HomePage: React.FC = () => {
     <Container>
       <Box sx={containerStyles}>
         <SearchFilters />
-        <ErrorDisplay error={error} />
+        {searchTerm ? <ErrorDisplay error={error} /> : null}
         {loading ? (
           <Box sx={loadingContainer}>
             <CircularProgress />

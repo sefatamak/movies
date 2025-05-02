@@ -11,7 +11,7 @@ const MoviePagination: React.FC<MoviePaginationProps> = ({
   onPageChange,
 }) => {
   // Don't render pagination if there are no results
-  if (totalResults <= 0) return null;
+  if (!totalResults || totalResults <= 0) return null;
 
   return (
     <Box sx={paginationContainer}>

@@ -21,6 +21,9 @@ const MovieTable: React.FC<MovieTableProps> = ({ movies }) => {
     navigate(`/movie/${imdbID}`);
   };
 
+  // Don't render pagination if there are no results
+  if (!movies || movies?.length <= 0) return null;
+
   return (
     <TableContainer component={Paper}>
       <Table>
