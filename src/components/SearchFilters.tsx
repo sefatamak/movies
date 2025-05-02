@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Box,
   TextField,
@@ -8,17 +8,21 @@ import {
   InputLabel,
   SelectChangeEvent,
 } from '@mui/material';
-import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../store';
-import { setSearchTerm, setYear, setType } from '../store/slices/movieSlice';
+import { useDispatch } from 'react-redux';
+import { fetchMovies } from '../store/slices/movieSlice';
 import { MovieType } from '../types/movie';
 import { searchFiltersContainer, formControlStyles } from '../styles/commonStyles';
 
-// SearchFilters component for filtering movies
-const SearchFilters: React.FC = () => {
-  const dispatch = useDispatch();
-  const { searchTerm, year, type } = useSelector((state: RootState) => state.movies);
+interface SearchFiltersProps {
+  searchTerm: string;
+  setSearchTerm: (value: string) => void;
+}
 
+// SearchFilters component for filtering movies
+const SearchFilters: React.FC<SearchFiltersProps> = ({  searchTerm, setSearchTerm }) => {
+  const dispatch = useDispatch();
+  const [year, setYear] = useState('all');
+  const [type, setType] = useState<MovieType>('all');
   // Generate years array from 1900 to current year
   const [years] = React.useState(() => {
     const currentYear = new Date().getFullYear();
@@ -27,25 +31,35 @@ const SearchFilters: React.FC = () => {
 
   // Handle search term change
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    dispatch(setSearchTerm(event.target.value));
+    setSearchTerm(event.target.value);
   };
 
   // Handle year filter change
   const handleYearChange = (event: SelectChangeEvent) => {
-    dispatch(setYear(event.target.value));
+    setYear(event.target.value);
   };
 
   // Handle type filter change
   const handleTypeChange = (event: SelectChangeEvent) => {
-    dispatch(setType(event.target.value as MovieType));
+    setType(event.target.value as MovieType);
   };
+
+  // Fetch movies when filters change
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (searchTerm) {
+        dispatch(fetchMovies({ searchTerm, year, type, page: 1 }) as any);
+      }
+    }, 500);
+
+    return () => clearTimeout(timer);
+  }, [dispatch, searchTerm, year, type]);
 
   // Available movie types
   const typeOptions = [
     { value: 'all', label: 'All' },
     { value: 'movie', label: 'Movie' },
     { value: 'series', label: 'Series' },
-    { value: 'episode', label: 'Episode' },
     { value: 'game', label: 'Game' },
   ];
 

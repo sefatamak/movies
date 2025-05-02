@@ -1,9 +1,7 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Box, Container, Paper } from '@mui/material';
-import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { RootState } from '../store';
-import { fetchMovieDetails, clearSelectedMovie } from '../store/slices/movieSlice';
+import apiService from '../services/api';
 import LoadingSpinner from '../components/LoadingSpinner';
 import ErrorPage from '../components/ErrorPage';
 import MoviePoster from '../components/MoviePoster';
@@ -15,20 +13,33 @@ import {
   movieDetailPoster,
   movieDetailInfo,
 } from '../styles/commonStyles';
+import { MovieDetails as MovieDetailsType } from '../types/movie';
 
 const MovieDetailPage: React.FC = () => {
   const { imdbID } = useParams<{ imdbID: string }>();
-  const dispatch = useDispatch();
-  const { selectedMovie, loading, error } = useSelector((state: RootState) => state.movies);
+  const [selectedMovie, setSelectedMovie] = useState<MovieDetailsType | null>(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    if (imdbID) {
-      dispatch(fetchMovieDetails(imdbID) as any);
-    }
-    return () => {
-      dispatch(clearSelectedMovie());
+    const fetchMovie = async () => {
+      if (!imdbID) return;
+
+      setLoading(true);
+      setError(null);
+
+      try {
+        const response = await apiService.getMovieDetails({ i: imdbID });
+        setSelectedMovie(response);
+      } catch (err) {
+        setError('Film detayları yüklenirken bir hata oluştu');
+      } finally {
+        setLoading(false);
+      }
     };
-  }, [dispatch, imdbID]);
+
+    fetchMovie();
+  }, [imdbID]);
 
   if (loading) {
     return <LoadingSpinner />;

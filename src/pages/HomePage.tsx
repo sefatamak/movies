@@ -1,8 +1,7 @@
-import React, { useEffect } from 'react';
+import React, { useState } from 'react';
 import { Container, Box, CircularProgress } from '@mui/material';
-import { useDispatch, useSelector } from 'react-redux';
-import { AppDispatch, RootState } from '../store';
-import { fetchMovies, setCurrentPage } from '../store/slices/movieSlice';
+import { useSelector } from 'react-redux';
+import { RootState } from '../store';
 import SearchFilters from '../components/SearchFilters';
 import ErrorDisplay from '../components/ErrorDisplay';
 import MovieTable from '../components/MovieTable';
@@ -11,25 +10,26 @@ import { containerStyles, loadingContainer } from '../styles/commonStyles';
 
 // HomePage component - Main page of the application
 const HomePage: React.FC = () => {
-  const dispatch = useDispatch<AppDispatch>();
-  const { movies, error, loading, currentPage, totalResults, searchTerm, year, type } = useSelector(
+  const { movies, error, loading, totalResults } = useSelector(
     (state: RootState) => state.movies
   );
-
-  // Fetch movies on initial load and when filters change
-  useEffect(() => {
-    dispatch(fetchMovies({ searchTerm, year, type, page: currentPage }));
-  }, [dispatch, searchTerm, year, type, currentPage]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [searchTerm, setSearchTerm] = useState('Pokemon');
+  
 
   // Handle page change in pagination
   const handlePageChange = (page: number) => {
-    dispatch(setCurrentPage(page));
+    setCurrentPage(page);
   };
 
   return (
     <Container>
       <Box sx={containerStyles}>
-        <SearchFilters />
+        <SearchFilters
+          searchTerm={searchTerm}
+          setSearchTerm={setSearchTerm}
+          
+        />
         {searchTerm ? <ErrorDisplay error={error} /> : null}
         {loading ? (
           <Box sx={loadingContainer}>

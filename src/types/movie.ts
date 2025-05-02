@@ -1,10 +1,10 @@
-export type MovieType = 'movie' | 'series' | 'game' | '';
+export type MovieType = 'movie' | 'series' | 'game' | 'all';
 
 export interface Movie {
   Title: string;
   Year: string;
   imdbID: string;
-  Type: string;
+  Type: MovieType;
   Poster: string;
 }
 
@@ -20,10 +20,10 @@ export interface MovieDetails extends Movie {
   Language: string;
   Country: string;
   Awards: string;
-  Ratings: Array<{
+  Ratings: {
     Source: string;
     Value: string;
-  }>;
+  }[];
   Metascore: string;
   imdbRating: string;
   imdbVotes: string;
@@ -40,10 +40,6 @@ export interface MovieState {
   loading: boolean;
   error: string | null;
   totalResults: number;
-  currentPage: number;
-  searchTerm: string;
-  year: string;
-  type: MovieType;
 }
 
 export interface SearchParams {

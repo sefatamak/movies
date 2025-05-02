@@ -10,10 +10,6 @@ const initialState: MovieState = {
   loading: false,
   error: null,
   totalResults: 0,
-  currentPage: 1,
-  searchTerm: 'Pokemon',
-  year: '',
-  type: '',
 };
 
 // Async thunk for fetching movies
@@ -84,26 +80,7 @@ export const fetchMovieDetails = createAsyncThunk<
 const movieSlice = createSlice({
   name: 'movies',
   initialState,
-  reducers: {
-    setSearchTerm: (state, action) => {
-      state.searchTerm = action.payload;
-      state.currentPage = 1;
-    },
-    setYear: (state, action) => {
-      state.year = action.payload;
-      state.currentPage = 1;
-    },
-    setType: (state, action) => {
-      state.type = action.payload;
-      state.currentPage = 1;
-    },
-    setCurrentPage: (state, action) => {
-      state.currentPage = action.payload;
-    },
-    clearSelectedMovie: (state) => {
-      state.selectedMovie = null;
-    },
-  },
+  reducers: {},
   extraReducers: (builder) => {
     builder
       // Fetch movies
@@ -139,5 +116,4 @@ const movieSlice = createSlice({
   },
 });
 
-export const { setSearchTerm, setYear, setType, setCurrentPage, clearSelectedMovie } = movieSlice.actions;
 export default movieSlice.reducer; 
