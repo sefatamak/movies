@@ -24,10 +24,10 @@ const SearchFilters: React.FC<SearchFiltersProps> = ({  searchTerm, setSearchTer
   const [year, setYear] = useState('all');
   const [type, setType] = useState<MovieType>('all');
   // Generate years array from 1900 to current year
-  const [years] = React.useState(() => {
+  const getYears = () => {
     const currentYear = new Date().getFullYear();
     return Array.from({ length: currentYear - 1900 + 1 }, (_, i) => (currentYear - i).toString());
-  });
+  };
 
   // Handle search term change
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -75,7 +75,7 @@ const SearchFilters: React.FC<SearchFiltersProps> = ({  searchTerm, setSearchTer
         <InputLabel>Year</InputLabel>
         <Select value={year} onChange={handleYearChange} label="Year">
           <MenuItem value="all">All</MenuItem>
-          {years.map((year) => (
+          {getYears()?.map((year: string) => (
             <MenuItem key={year} value={year}>
               {year}
             </MenuItem>

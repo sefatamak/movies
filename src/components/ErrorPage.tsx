@@ -7,10 +7,10 @@ const ErrorPage: React.FC = () => {
   return (
     <Box sx={errorPageContainer}>
       <Typography variant="h4" sx={errorPageTitle}>
-        Bir Hata Oluştu
+        An Error Occurred
       </Typography>
       <Typography variant="body1" sx={errorPageMessage}>
-        Üzgünüz, bir hata oluştu. Lütfen daha sonra tekrar deneyin.
+        Sorry, an error occurred. Please try again later.
       </Typography>
     </Box>
   );
