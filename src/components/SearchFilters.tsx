@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import {
   Box,
   TextField,
@@ -16,13 +16,17 @@ import { searchFiltersContainer, formControlStyles } from '../styles/commonStyle
 interface SearchFiltersProps {
   searchTerm: string;
   setSearchTerm: (value: string) => void;
+  year: string;
+  setYear: (value: string) => void;
+  type: string;
+  setType: (value: MovieType) => void;
+  setCurrentPage: (page: number) => void;
 }
 
 // SearchFilters component for filtering movies
-const SearchFilters: React.FC<SearchFiltersProps> = ({  searchTerm, setSearchTerm }) => {
+const SearchFilters: React.FC<SearchFiltersProps> = ({ setCurrentPage, year, setYear, type, setType, searchTerm, setSearchTerm }) => {
   const dispatch = useDispatch();
-  const [year, setYear] = useState('all');
-  const [type, setType] = useState<MovieType>('all');
+
   // Generate years array from 1900 to current year
   const getYears = () => {
     const currentYear = new Date().getFullYear();
@@ -36,11 +40,13 @@ const SearchFilters: React.FC<SearchFiltersProps> = ({  searchTerm, setSearchTer
 
   // Handle year filter change
   const handleYearChange = (event: SelectChangeEvent) => {
+    setCurrentPage(1);
     setYear(event.target.value);
   };
 
   // Handle type filter change
   const handleTypeChange = (event: SelectChangeEvent) => {
+    setCurrentPage(1);
     setType(event.target.value as MovieType);
   };
 

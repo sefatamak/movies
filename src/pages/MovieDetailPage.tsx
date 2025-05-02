@@ -32,7 +32,7 @@ const MovieDetailPage: React.FC = () => {
         const response = await apiService.getMovieDetails({ i: imdbID });
         setSelectedMovie(response);
       } catch (err) {
-        setError('Film detayları yüklenirken bir hata oluştu');
+        setError('An error occurred while loading movie details');
       } finally {
         setLoading(false);
       }
