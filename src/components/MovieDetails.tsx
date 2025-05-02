@@ -1,10 +1,6 @@
 import React from 'react';
 import { CardContent, Typography } from '@mui/material';
-import { MovieDetails as MovieDetailsType } from '../types/movie';
-
-interface MovieDetailsProps {
-  movie: MovieDetailsType;
-}
+import { MovieDetailsProps } from '../types/components';
 
 const MovieDetails: React.FC<MovieDetailsProps> = ({ movie }) => {
   return (
@@ -25,7 +21,7 @@ const MovieDetails: React.FC<MovieDetailsProps> = ({ movie }) => {
         <strong>Cast:</strong> {movie.Actors}
       </Typography>
       <Typography variant="subtitle2" gutterBottom>
-        <strong>Type:</strong> {movie.Genre}
+        <strong>Genre:</strong> {movie.Genre}
       </Typography>
       <Typography variant="subtitle2" gutterBottom>
         <strong>IMDB Point:</strong> {movie.imdbRating}

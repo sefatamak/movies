@@ -1,10 +1,6 @@
 import React from 'react';
 import { Card, CardMedia } from '@mui/material';
-import { MovieDetails } from '../types/movie';
-
-interface MoviePosterProps {
-  movie: MovieDetails;
-}
+import { MoviePosterProps } from '../types/components';
 
 const MoviePoster: React.FC<MoviePosterProps> = ({ movie }) => {
   return (

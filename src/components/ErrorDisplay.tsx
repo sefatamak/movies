@@ -1,17 +1,14 @@
 import React from 'react';
 import { Alert } from '@mui/material';
-
-// Props interface for ErrorDisplay component
-interface ErrorDisplayProps {
-  error: string | null;
-}
+import { ErrorDisplayProps } from '../types/components';
+import { errorAlert } from '../styles/commonStyles';
 
 // ErrorDisplay component for showing error messages
 const ErrorDisplay: React.FC<ErrorDisplayProps> = ({ error }) => {
   if (!error) return null;
 
   return (
-    <Alert severity="error" sx={{ mb: 2 }}>
+    <Alert severity="error" sx={errorAlert}>
       {error}
     </Alert>
   );

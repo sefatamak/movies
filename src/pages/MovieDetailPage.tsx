@@ -28,7 +28,7 @@ const MovieDetailPage: React.FC = () => {
   }
 
   if (error || !selectedMovie) {
-    return <ErrorPage error={error} />;
+    return <ErrorPage />;
   }
 
   return (
@@ -43,7 +43,7 @@ const MovieDetailPage: React.FC = () => {
           </Box>
         </Box>
       </Paper>
-      </Container>
+    </Container>
   );
 };
 

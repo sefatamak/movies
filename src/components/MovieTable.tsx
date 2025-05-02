@@ -10,13 +10,8 @@ import {
   Paper,
   Box,
 } from '@mui/material';
-import { Movie } from '../types/movie';
 import { movieTableRow, moviePoster } from '../styles/commonStyles';
-
-// Props interface for MovieTable component
-interface MovieTableProps {
-  movies: Movie[];
-}
+import { MovieTableProps } from '../types/components';
 
 const MovieTable: React.FC<MovieTableProps> = ({ movies }) => {
   const navigate = useNavigate();

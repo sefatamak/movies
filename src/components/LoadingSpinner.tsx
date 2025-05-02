@@ -1,10 +1,12 @@
 import React from 'react';
 import { Box, CircularProgress } from '@mui/material';
+import { loadingContainer, loadingSpinner } from '../styles/commonStyles';
 
+// LoadingSpinner component for showing loading state
 const LoadingSpinner: React.FC = () => {
   return (
-    <Box sx={{ display: 'flex', justifyContent: 'center', mt: 3 }}>
-      <CircularProgress />
+    <Box sx={loadingContainer}>
+      <CircularProgress sx={loadingSpinner} />
     </Box>
   );
 };

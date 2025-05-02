@@ -1,20 +1,17 @@
 import React from 'react';
-import { Box, Typography, Button } from '@mui/material';
-import { useNavigate } from 'react-router-dom';
+import { Box, Typography } from '@mui/material';
+import { errorPageContainer, errorPageTitle, errorPageMessage } from '../styles/commonStyles';
 
-interface ErrorPageProps {
-  error: string | null;
-}
-
-const ErrorPage: React.FC<ErrorPageProps> = ({ error }) => {
-  const navigate = useNavigate();
-
+// ErrorPage component for showing error state
+const ErrorPage: React.FC = () => {
   return (
-    <Box sx={{ p: 3 }}>
-      <Typography color="error">{error || 'Film bulunamadı'}</Typography>
-      <Button onClick={() => navigate('/')} sx={{ mt: 2 }}>
-        Ana Sayfaya Dön
-      </Button>
+    <Box sx={errorPageContainer}>
+      <Typography variant="h4" sx={errorPageTitle}>
+        Bir Hata Oluştu
+      </Typography>
+      <Typography variant="body1" sx={errorPageMessage}>
+        Üzgünüz, bir hata oluştu. Lütfen daha sonra tekrar deneyin.
+      </Typography>
     </Box>
   );
 };

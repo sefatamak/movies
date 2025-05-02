@@ -31,4 +31,38 @@ export const moviePoster: SxProps = {
   width: 100,
   height: 150,
   objectFit: 'cover',
+};
+
+export const errorAlert: SxProps = {
+  mb: 2,
+};
+
+export const errorPageContainer: SxProps = {
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  justifyContent: 'center',
+  minHeight: '60vh',
+  textAlign: 'center',
+};
+
+export const errorPageTitle: SxProps = {
+  mb: 2,
+  color: 'error.main',
+};
+
+export const errorPageMessage: SxProps = {
+  mb: 4,
+  color: 'text.secondary',
+};
+
+export const loadingContainer: SxProps = {
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  minHeight: 200,
+};
+
+export const loadingSpinner: SxProps = {
+  color: 'primary.main',
 }; 
