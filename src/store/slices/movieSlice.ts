@@ -44,12 +44,12 @@ export const fetchMovies = createAsyncThunk<
           });
           return firstPageResponse;
         }
-        return rejectWithValue(response.Error || 'Bilinmeyen bir hata oluştu');
+        return rejectWithValue(response.Error || 'An unknown error occurred');
       }
 
       return response;
     } catch (error) {
-      return rejectWithValue('Filmler yüklenirken bir hata oluştu');
+      return rejectWithValue('An error occurred while loading movie details');
     }
   }
 );
@@ -66,12 +66,12 @@ export const fetchMovieDetails = createAsyncThunk<
       const response = await apiService.getMovieDetails({ i: imdbID });
 
       if (response.Response === 'False') {
-        return rejectWithValue(response.Error || 'Bilinmeyen bir hata oluştu');
+        return rejectWithValue(response.Error || 'An unknown error occurred');
       }
 
       return response;
     } catch (error) {
-      return rejectWithValue('Film detayları yüklenirken bir hata oluştu');
+      return rejectWithValue('An error occurred while loading movie details');
     }
   }
 );
