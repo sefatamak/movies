@@ -1,5 +1,6 @@
 import React from 'react';
 import { Box, Pagination } from '@mui/material';
+import { paginationContainer } from '../styles/commonStyles';
 
 interface MoviePaginationProps {
   totalResults: number;
@@ -15,7 +16,7 @@ const MoviePagination: React.FC<MoviePaginationProps> = ({
   if (totalResults <= 0) return null;
 
   return (
-    <Box sx={{ mt: 3, display: 'flex', justifyContent: 'center' }}>
+    <Box sx={paginationContainer}>
       <Pagination
         count={Math.ceil(totalResults / 10)}
         page={currentPage}

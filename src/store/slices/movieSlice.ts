@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import apiService from '../services/api';
-import { MovieState, Movie, MovieDetails } from '../types/movie';
-import { AsyncThunkConfig } from '../types/store';
+import apiService from '../../services/api';
+import { MovieState, Movie, MovieDetails } from '../../types/movie';
+import { AsyncThunkConfig } from '../../types/store';
 
 // Initial state
 const initialState: MovieState = {

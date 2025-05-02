@@ -11,6 +11,7 @@ import {
   Box,
 } from '@mui/material';
 import { Movie } from '../types/movie';
+import { movieTableRow, moviePoster } from '../styles/commonStyles';
 
 interface MovieTableProps {
   movies: Movie[];
@@ -37,17 +38,17 @@ const MovieTable: React.FC<MovieTableProps> = ({ movies }) => {
         </TableHead>
         <TableBody>
           {movies?.map((movie) => (
-            <TableRow 
+            <TableRow
               key={movie.imdbID}
               onClick={() => handleMovieClick(movie.imdbID)}
-              sx={{ cursor: 'pointer', '&:hover': { backgroundColor: 'rgba(0, 0, 0, 0.04)' } }}
+              sx={movieTableRow}
             >
               <TableCell>
                 <Box
                   component="img"
                   src={movie.Poster !== 'N/A' ? movie.Poster : 'https://via.placeholder.com/100x150?text=No+Poster'}
                   alt={movie.Title}
-                  sx={{ width: 100, height: 150, objectFit: 'cover' }}
+                  sx={moviePoster}
                 />
               </TableCell>
               <TableCell>{movie.Title}</TableCell>

@@ -1,12 +1,13 @@
 import React, { useEffect } from 'react';
-import { Box, Container } from '@mui/material';
+import { Container, Box } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '../store';
-import { fetchMovies, setCurrentPage } from '../store/movieSlice';
+import { fetchMovies, setCurrentPage } from '../store/slices/movieSlice';
 import SearchFilters from '../components/SearchFilters';
 import ErrorDisplay from '../components/ErrorDisplay';
 import MovieTable from '../components/MovieTable';
 import MoviePagination from '../components/MoviePagination';
+import { containerStyles } from '../styles/commonStyles';
 
 const HomePage: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -24,17 +25,17 @@ const HomePage: React.FC = () => {
   };
 
   return (
-    <Container sx={{ my: 4 }}>
+    <Container>
+      <Box sx={containerStyles}>
         <SearchFilters />
-        {error ? <ErrorDisplay error={error} /> : <>
-          <MovieTable movies={movies} />
-          <MoviePagination
-            totalResults={totalResults}
-            currentPage={currentPage}
-            onPageChange={handlePageChange}
-          />
-        </>
-        }
+        <ErrorDisplay error={error} />
+        <MovieTable movies={movies} />
+        <MoviePagination
+          totalResults={totalResults}
+          currentPage={currentPage}
+          onPageChange={handlePageChange}
+        />
+      </Box>
     </Container>
   );
 };

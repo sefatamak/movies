@@ -1,18 +1,12 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import { ThemeProvider, createTheme } from '@mui/material';
+import { ThemeProvider } from '@mui/material';
 import CssBaseline from '@mui/material/CssBaseline';
 import { store } from './store';
 import HomePage from './pages/HomePage';
 import MovieDetailPage from './pages/MovieDetailPage';
-
-// Create a theme instance
-const theme = createTheme({
-  palette: {
-    mode: 'light',
-  },
-});
+import { theme } from './styles/theme';
 
 const App: React.FC = () => {
   return (

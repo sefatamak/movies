@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
   Box,
   TextField,
@@ -10,13 +10,14 @@ import {
 } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../store';
-import { setSearchTerm, setYear, setType } from '../store/movieSlice';
+import { setSearchTerm, setYear, setType } from '../store/slices/movieSlice';
 import { MovieType } from '../types/movie';
+import { searchFiltersContainer, formControlStyles } from '../styles/commonStyles';
 
 const SearchFilters: React.FC = () => {
   const dispatch = useDispatch();
   const { searchTerm, year, type } = useSelector((state: RootState) => state.movies);
-  const [years] = useState(() => {
+  const [years] = React.useState(() => {
     const currentYear = new Date().getFullYear();
     return Array.from({ length: currentYear - 1900 + 1 }, (_, i) => (currentYear - i).toString());
   });
@@ -37,18 +38,19 @@ const SearchFilters: React.FC = () => {
     { value: 'all', label: 'All' },
     { value: 'movie', label: 'Movie' },
     { value: 'series', label: 'Series' },
+    { value: 'episode', label: 'Episode' },
     { value: 'game', label: 'Game' },
   ];
 
   return (
-    <Box sx={{ mb: 3, display: 'flex', gap: 2 }}>
+    <Box sx={searchFiltersContainer}>
       <TextField
         label="Search Movies"
         value={searchTerm}
         onChange={handleSearchChange}
         fullWidth
       />
-      <FormControl sx={{ width: 200 }}>
+      <FormControl sx={formControlStyles}>
         <InputLabel>Year</InputLabel>
         <Select value={year} onChange={handleYearChange} label="Year">
           <MenuItem value="all">All</MenuItem>
@@ -59,7 +61,7 @@ const SearchFilters: React.FC = () => {
           ))}
         </Select>
       </FormControl>
-      <FormControl sx={{ width: 200 }}>
+      <FormControl sx={formControlStyles}>
         <InputLabel>Type</InputLabel>
         <Select value={type} onChange={handleTypeChange} label="Type">
           {typeOptions.map((option) => (

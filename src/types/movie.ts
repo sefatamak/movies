@@ -36,6 +36,7 @@ export interface MovieDetails extends Movie {
 
 export interface MovieState {
   movies: Movie[];
+  selectedMovie: MovieDetails | null;
   loading: boolean;
   error: string | null;
   totalResults: number;
@@ -43,7 +44,6 @@ export interface MovieState {
   searchTerm: string;
   year: string;
   type: MovieType;
-  selectedMovie: MovieDetails | null;
 }
 
 export interface SearchParams {

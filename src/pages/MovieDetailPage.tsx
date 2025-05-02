@@ -3,7 +3,7 @@ import { Box, Container, Paper } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { RootState } from '../store';
-import { fetchMovieDetails, clearSelectedMovie } from '../store/movieSlice';
+import { fetchMovieDetails, clearSelectedMovie } from '../store/slices/movieSlice';
 import LoadingSpinner from '../components/LoadingSpinner';
 import ErrorPage from '../components/ErrorPage';
 import MoviePoster from '../components/MoviePoster';
